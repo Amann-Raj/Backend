@@ -1,0 +1,9 @@
+body { font-family: sans-serif; padding: 20px; background: #f4f4f4; text-align: center; }
+input { padding: 10px; width: 250px; border-radius: 5px; border: 1px solid #ddd; }
+button { padding: 10px; cursor: pointer; background: #28a745; color: white; border: none; border-radius: 5px; }
+.note-card { 
+    background: white; padding: 15px; margin: 10px auto; width: 300px;
+    display: flex; justify-content: space-between; border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.actions button { background: none; color: black; margin-left: 5px; padding: 5px; }
