@@ -2,9 +2,18 @@ import Note from '../models/noteModel.js';
 
 // Saare notes lana
 export const getNotes = async(req, res) => {
-    const notes = await Note.find();
-    res.json(notes);
-}
+    try{
+        let sortOrder = -1;
+        if(req.query.order === 'asc'){
+            sortOrder = 1;
+        }
+        const notes = await Note.find().sort({_id: sortOrder});
+        res.status(200).json(notes);
+    } catch(error){
+        console.log("Backend Error:", error);
+        res.status(500).json({message: error.message});
+    }
+};
 
 // Naya note save karna
 export const addNote = async(req, res) => {

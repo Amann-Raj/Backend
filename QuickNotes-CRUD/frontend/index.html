@@ -10,6 +10,10 @@
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Search notes..." oninput="handleSearch()">
     </div>
+    <select id="sortOrder" onchange="fetchNotes()">
+        <option value="desc">Newest First</option>
+        <option value="asc">Oldest First</option>
+    </select>
     <input type="text" id="noteInput" placeholder="Kuch likhiye...">
     <button onclick="saveNote()">Save Note</button>
 

@@ -71,6 +71,14 @@ async function handleSearch() {
 // Thoda sa cleanup: displayNotes ko alag function bana lete hain taaki reuse ho sake
 function displayNotes(notes) {
     const container = document.getElementById('notesContainer');
+    
+    // Safety check: Agar notes array nahi hai toh handle karo
+    if (!Array.isArray(notes)) {
+        console.error("Expected array but got:", notes);
+        container.innerHTML = "<p>Notes load nahi ho paye.</p>";
+        return;
+    }
+
     container.innerHTML = notes.map(n => `
         <div class="note-card">
             <span>${n.content}</span>
@@ -84,7 +92,14 @@ function displayNotes(notes) {
 
 // Purane fetchNotes ko update karein
 async function fetchNotes() {
-    const res = await fetch(API_URL);
-    const notes = await res.json();
-    displayNotes(notes);
+    const sortDropdown = document.getElementById('sortOrder');
+    const order = sortDropdown ? sortDropdown.value : 'desc';
+
+    try{
+        const res = await fetch(`${API_URL}?order=${order}`);
+        const notes = await res.json();
+        displayNotes(notes);
+    }catch(err){
+        console.error("Notes fetch nahi ho paye:", err);
+    }
 }
