@@ -7,3 +7,13 @@ button { padding: 10px; cursor: pointer; background: #28a745; color: white; bord
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 .actions button { background: none; color: black; margin-left: 5px; padding: 5px; }
+
+.search-container {
+    margin-bottom: 20px;
+}
+#searchInput {
+    background-color: #fff;
+    border: 2px solid #007bff;
+    width: 80%;
+    max-width: 400px;
+}

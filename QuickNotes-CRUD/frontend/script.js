@@ -51,5 +51,40 @@ async function editNote(id, oldContent) {
         fetchNotes();
     }
 }
+async function handleSearch() {
+    const searchText = document.getElementById('searchInput').value;
+    
+    // Agar search bar khali hai, toh saare notes dikhao
+    if (searchText === "") {
+        fetchNotes();
+        return;
+    }
 
-fetchNotes();
+    // Backend ko search query bhejna
+    const res = await fetch(`${API_URL}/search?text=${searchText}`);
+    const filteredNotes = await res.json();
+    
+    // UI update karna (hum purana logic reuse kar rahe hain)
+    displayNotes(filteredNotes); 
+}
+
+// Thoda sa cleanup: displayNotes ko alag function bana lete hain taaki reuse ho sake
+function displayNotes(notes) {
+    const container = document.getElementById('notesContainer');
+    container.innerHTML = notes.map(n => `
+        <div class="note-card">
+            <span>${n.content}</span>
+            <div class="actions">
+                <button onclick="editNote('${n._id}', '${n.content}')">✏️</button>
+                <button onclick="deleteNote('${n._id}')">🗑️</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Purane fetchNotes ko update karein
+async function fetchNotes() {
+    const res = await fetch(API_URL);
+    const notes = await res.json();
+    displayNotes(notes);
+}

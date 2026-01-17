@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { getNotes, addNote, deleteNote, updateNote } from './controllers/noteController.js';
+import { getNotes, addNote, deleteNote, updateNote, searchNotes } from './controllers/noteController.js';
 
 const app = express();
 
@@ -17,5 +17,6 @@ app.get('/notes', getNotes);
 app.post('/notes', addNote);
 app.delete('/notes/:id', deleteNote);
 app.put('/notes/:id', updateNote);
+app.get('/notes/search', searchNotes);
 
 app.listen(5000, () => console.log("Backend running on port 5000"));

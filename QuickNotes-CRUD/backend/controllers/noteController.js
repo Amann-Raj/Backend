@@ -29,3 +29,15 @@ export const updateNote = async(req, res) => {
     );
     res.json(updateNote);
 };
+
+export const searchNotes = async(req, res) => {
+    try{
+        const query = req.query.text;
+        const notes = await Note.find({
+            content: { $regex: query, $options: 'i'}
+        });
+        res.json(notes);
+    } catch(error){
+        res.status(500).json({message: error.message});
+    }
+};
