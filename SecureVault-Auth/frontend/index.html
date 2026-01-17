@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Vault Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="authBox">
+        <h2 id="title">Login</h2>
+        <input type="text" id="username" placeholder="Username (Signup only)" class="hidden">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="handleAuth()" id="btn">Login</button>
+        <p onclick="toggleMode()" id="toggleText">Naya account? Signup karein</p>
+    </div>
+
+    <div id="dashboard" class="hidden">
+        <h2>Welcome, <span id="userDisp"></span>! ✅</h2>
+        <p>Aapka Token: <small id="tokenDisp"></small></p>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

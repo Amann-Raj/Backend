@@ -1,0 +1,89 @@
+/* General Setup */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Auth Container */
+#authBox, #dashboard {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Taaki padding se width na bade */
+    outline: none;
+}
+
+input:focus {
+    border-color: #007bff;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Helpers */
+.hidden {
+    display: none;
+}
+
+#toggleText {
+    margin-top: 15px;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#toggleText:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard Specific */
+#dashboard {
+    border-top: 5px solid #28a745;
+}
+
+#tokenDisp {
+    display: block;
+    word-break: break-all;
+    background: #f8f9fa;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #666;
+}
