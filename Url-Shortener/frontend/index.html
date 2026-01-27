@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Shortener</title>
+</head>
+<body>
+    <h2>URL Shortener (MERN Backend Practice)</h2>
+    
+    <input type="text" id="longUrl" placeholder="Enter long URL (e.g. https://google.com)" style="width: 300px;">
+    
+    <button id="shortenBtn">Shorten Link</button>
+
+    <hr>
+
+    <div id="resultSection" style="display: none;">
+        <p>Your Shortened URL is:</p>
+        <h3 id="displayShortLink"></h3>
+        <p>Total Clicks: <span id="clickCount">0</span></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
