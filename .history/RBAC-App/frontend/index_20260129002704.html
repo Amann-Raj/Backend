@@ -1,0 +1,19 @@
+<div style="max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ddd;">
+    <h3>RBAC Auth System</h3>
+    <input type="text" id="name" placeholder="Name" style="width:100%; margin-bottom:10px;">
+    <input type="email" id="email" placeholder="Email" style="width:100%; margin-bottom:10px;">
+    <input type="password" id="password" placeholder="Password" style="width:100%; margin-bottom:10px;">
+    
+    <label>Select Role:</label>
+    <select id="role" style="width:100%; margin-bottom:10px;">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+    </select>
+
+    <button onclick="handleAuth('register')">Register</button>
+    <button onclick="handleAuth('login')">Login</button>
+    <hr>
+    <button onclick="accessAdminData()" style="background: red; color: white;">Access Admin Secret</button>
+    <p id="msg"></p>
+</div>
+<script src="script.js"></script>

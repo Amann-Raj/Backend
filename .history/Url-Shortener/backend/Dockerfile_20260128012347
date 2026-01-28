@@ -1,0 +1,19 @@
+# 1. Base image choose karein (Node.js version 20)
+FROM node:20
+
+# 2. Container ke andar folder create karein
+WORKDIR /app
+
+# 3. Dependencies copy karein aur install karein
+COPY package*.json ./
+
+RUN npm install
+
+# 4. Baaki saara code copy karein
+COPY . .
+
+# 5. Port expose karein (jo humne server.js mein diya hai)
+EXPOSE 5000
+
+# 6. App start karne ki command
+CMD ["npm", "start"]

@@ -1,7 +1,6 @@
 let isLogin = true;
 const API_URL = "http://localhost:5000/api";
 
-// YAHI WO FUNCTION HAI JO MISSING BATA RAHA HAI
 function toggleMode() {
     isLogin = !isLogin;
     const usernameInput = document.getElementById('username');
@@ -23,33 +22,46 @@ function toggleMode() {
 }
 
 async function handleAuth() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const username = document.getElementById('username').value.trim();
+
+    // Safety: Khali fields check karein
+    if (!email || !password || (!isLogin && !username)) {
+        alert("Please saari fields bhariye!");
+        return;
+    }
 
     const endpoint = isLogin ? '/login' : '/signup';
     const bodyData = isLogin ? { email, password } : { username, email, password };
 
-    const res = await fetch(API_URL + endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bodyData)
-    });
+    try {
+        console.log(`Bhej rahe hain ${isLogin ? 'Login' : 'Signup'} request...`, bodyData);
 
-    const data = await res.json();
+        const res = await fetch(API_URL + endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bodyData)
+        });
 
-    if (res.ok) {
-        if (isLogin) {
-            // Token ko browser ki memory mein save karein
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('user', data.username);
-            showDashboard();
+        const data = await res.json();
+
+        if (res.ok) {
+            if (isLogin) {
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', data.username);
+                showDashboard();
+            } else {
+                alert("Signup successful! Ab login karke dekhiye.");
+                toggleMode(); // Login mode par switch karo
+            }
         } else {
-            alert("Signup successful! Ab login karein.");
-            toggleMode();
+            // Backend se aane wala asli error message alert mein dikhao
+            alert(data.error || data.message || "Kuch ghalat hua!");
         }
-    } else {
-        alert(data.error || "Kuch ghalat hua!");
+    } catch (err) {
+        console.error("Fetch Error:", err);
+        alert("Server se connection nahi ho paya! Check karein backend running hai ya nahi.");
     }
 }
 
@@ -57,7 +69,9 @@ function showDashboard() {
     document.getElementById('authBox').classList.add('hidden');
     document.getElementById('dashboard').classList.remove('hidden');
     document.getElementById('userDisp').innerText = localStorage.getItem('user');
-    document.getElementById('tokenDisp').innerText = localStorage.getItem('token').substring(0, 20) + "...";
+    
+    const token = localStorage.getItem('token');
+    document.getElementById('tokenDisp').innerText = token ? token.substring(0, 20) + "..." : "";
 }
 
 function logout() {
@@ -65,5 +79,4 @@ function logout() {
     location.reload();
 }
 
-// Page load par check karein agar user pehle se logged in hai
 if (localStorage.getItem('token')) showDashboard();

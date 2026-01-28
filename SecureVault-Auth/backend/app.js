@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/secureValut');
+mongoose.connect('mongodb://127.0.0.1:27017/secureVault');
 
 app.post('/api/signup', signup);
 app.post('/api/login', login);

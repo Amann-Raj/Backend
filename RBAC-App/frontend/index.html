@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBAC Pro Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-card" id="auth-section">
+            <h2 id="form-title">Register</h2>
+            <div class="form-group" id="name-group">
+                <input type="text" id="name" placeholder="Full Name">
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email Address">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password">
+            </div>
+            <div class="form-group" id="role-group">
+                <label>Select Role:</label>
+                <select id="role">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <button class="btn-primary" onclick="submitAuth()" id="auth-btn">Create Account</button>
+            <p class="toggle-text">
+                Already have an account? <span onclick="toggleAuth()">Login</span>
+            </p>
+        </div>
+
+        <div class="dashboard-card hidden" id="dashboard-section">
+            <h2>Welcome, <span id="user-name">User</span>!</h2>
+            <p>Your Role: <strong id="user-role"></strong></p>
+            <div class="actions">
+                <button class="btn-admin" onclick="fetchAdminData()">Access Admin Secret Area</button>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+            <div id="api-response" class="response-box"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
